@@ -5,7 +5,8 @@
         <!-- Header -->
         <header class="max-w-6xl mx-auto mb-8">
             <h1 class="text-3xl font-bold text-center" style="color: #13293d;">Fraud Check System</h1>
-            <p class="text-center text-gray-600 mt-2">Verify emails and phone numbers against our database</p>
+            <p class="text-center text-gray-600 mt-2">Verify emails, phone numbers, and facebook accounts against our
+                database</p>
         </header>
 
         <!-- Search Input -->
@@ -22,7 +23,7 @@
 
             <div class="relative">
                 <input v-model="searchQuery" @input="searchFraudster" type="text"
-                    placeholder="Enter email or phone number..."
+                    placeholder="Enter email, phone number or facebook link..."
                     class="w-full p-4 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-all"
                     :style="{ 'focus:ring-color': '#1b98e0' }" />
                 <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
