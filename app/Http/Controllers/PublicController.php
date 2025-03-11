@@ -15,7 +15,7 @@ class PublicController extends Controller {
 		// Retrieve all matching records using LIKE for partial matching
 		$people = People::where('phone', 'LIKE', '%' . $request->data . '%') // Match partial phone number
 			->orWhere('email', 'LIKE', '%' . $request->data . '%') // Match partial email
-			->orWhere('facebook_link', 'LIKE', '%' . $request->data . '%') // Match partial Facebook link
+			->orWhere('url', 'LIKE', '%' . $request->data . '%') // Match partial Facebook link
 			->get(); // Get all matching records
 
 		// If no people found

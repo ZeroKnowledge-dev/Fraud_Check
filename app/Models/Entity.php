@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class People extends Model {
+class Entity extends Model {
 	protected $fillable = [
+		'name',
 		'email',
 		'phone',
 		'url',
-		'image',
+		'images',
 		'address',
-		'status',
+		'is_fraud',
+		'category',
 		'description',
+		'type',
 	];
 }
