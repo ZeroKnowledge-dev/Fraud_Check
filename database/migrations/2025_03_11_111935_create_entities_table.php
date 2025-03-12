@@ -17,7 +17,7 @@ return new class extends Migration {
 			$table->string('url')->nullable()->unique();
 			$table->json('images')->nullable();
 			$table->string('address')->nullable();
-			$table->string('description');
+			$table->longText('description');
 			$table->boolean('is_fraud'); // 1 = Fraud, 0 = Valid
 			$table->enum('type', ['person', 'company']);
 			$table->string('category')->nullable();
