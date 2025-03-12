@@ -26,8 +26,7 @@ class EntityController extends Controller {
 			'description' => 'required|string',
 			'type'        => 'required|string',
 			'is_fraud'    => 'required|boolean',
-			'images'      => 'nullable|array',
-			'images.*'    => 'nullable|string', // Validate each image URL
+			'images.*'    => 'nullable|image|max:5120', // Validate each file
 		]);
 
 		// Handle multiple image uploads

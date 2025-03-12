@@ -121,7 +121,7 @@
                             </div>
                             <div>
                                 <h2 class="font-semibold text-lg text-gray-800">{{ result.name || 'Unnamed' }}</h2>
-                                <p class="text-sm text-gray-500">ID: {{ result.id }}</p>
+                                <p class="text-sm text-gray-500">{{ formateDate(result.created_at) }}</p>
                             </div>
                             <div class="ml-auto">
                                 <span class="px-3 py-1 rounded-full text-sm" :class="{
@@ -132,22 +132,19 @@
                                 </span>
                             </div>
                         </div>
-
                         <!-- Card Body -->
                         <div class="p-4">
                             <!-- Description -->
                             <p v-if="result.description" class="text-gray-700 mb-4">{{ result.description }}</p>
-
                             <!-- Image Gallery -->
-                            <div v-if="result.images && result.images.length" class="mb-4">
+                            <div v-if="JSON.parse(result.images) && JSON.parse(result.images).length" class="mb-4">
                                 <div class="grid grid-cols-2 gap-2">
-                                    <div v-for="(image, imageIndex) in result.images.slice(0, 4)" :key="imageIndex"
-                                        class="relative h-40 bg-gray-100 rounded overflow-hidden">
-                                        <img :src="image" :alt="`Image ${imageIndex + 1}`"
+                                    <div v-for="(image, imageIndex) in JSON.parse(result.images).slice(0, 4)"
+                                        :key="imageIndex" class="relative h-40 bg-gray-100 rounded overflow-hidden">
+                                        <img :src="`/storage/${image}`" :alt="`Image ${imageIndex + 1}`"
                                             class="w-full h-full object-cover transition-transform hover:scale-105" />
-
                                         <!-- Show "+X more" on the last visible image if there are more images -->
-                                        <div v-if="imageIndex === 3 && result.images.length > 4"
+                                        <div v-if="imageIndex === 3 && JSON.parse(result.images).length > 4"
                                             class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white font-bold">
                                             +{{ result.images.length - 4 }} more
                                         </div>
@@ -231,13 +228,12 @@ const props = defineProps({
     },
     data: {
         type: Array,
-        default: () => []
+        required: true
     }
 });
 
 const searchQuery = ref('');
 const loading = ref(true);
-const verifyCount = ref(0);
 const verifyDone = ref(false);
 
 // Simulate loading state
@@ -282,6 +278,23 @@ const handleVerify = async (id) => {
         verifyDone.value = true;
     }
 };
+
+const formateDate = (value) => {
+    const date = new Date(value);
+
+    // Get month name
+    const options = { month: "long" };
+    const month = new Intl.DateTimeFormat("en-US", options).format(date);
+
+    // Get day and time
+    const day = date.getDate();
+    const hours = date.getHours() % 12 || 12; // Convert to 12-hour format
+    const minutes = date.getMinutes();
+    const amPm = date.getHours() >= 12 ? "PM" : "AM";
+
+    // Format the string
+    return `${month} ${day} at ${hours}:${minutes.toString().padStart(2, "0")} ${amPm}`;
+}
 </script>
 
 <style scoped>
