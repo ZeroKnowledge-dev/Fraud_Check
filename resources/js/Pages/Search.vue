@@ -137,19 +137,24 @@
                             <!-- Description -->
                             <p v-if="result.description" class="text-gray-700 mb-4">{{ result.description }}</p>
                             <!-- Image Gallery -->
-                            <div v-if="JSON.parse(JSON.parse() && JSON.par)se(JSON.parse().length" cla)ss="mb-4">
+                            <div v-if="JSON.parse(result.images) && JSON.parse(result.images).length" class="mb-4">
                                 <div class="grid grid-cols-2 gap-2">
-                                    <div v-for="(image, imageIndex) in JSON.parse(JSON.parse().slice(0, 4))"
+                                    <div v-for="(image, imageIndex) in JSON.parse(result.images).slice(0, 4)"
                                         :key="imageIndex" class="relative h-40 bg-gray-100 rounded overflow-hidden">
                                         <img :src="`/storage/${image}`" :alt="`Image ${imageIndex + 1}`"
                                             class="w-full h-full object-cover transition-transform hover:scale-105" />
                                         <!-- Show "+X more" on the last visible image if there are more images -->
-                                        <div v-if="imageIndex === 3 && JSON.parse(JSON.parse().length > 4" )
+                                        <div v-if="imageIndex === 3 && JSON.parse(result.images).length > 4"
                                             class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white font-bold">
                                             +{{ JSON.parse(result.images).length - 4 }} more
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <!-- Verify Count -->
+                            <div>
+                                <p class="text-sm text-gray-600">{{ result.verify_count }}</p>
                             </div>
 
                             <!-- Details Cards -->
@@ -189,13 +194,10 @@
                                     <span class="text-sm text-gray-700 truncate">{{ result.address }}</span>
                                 </div>
 
+                                <div>{{ result.verify_count }}</div>
                             </div>
                         </div>
 
-                        <!-- Verify Count -->
-                        <div>
-                            <p class="text-sm text-gray-600">{{ result.verify_count }}</p>
-                        </div>
                         <!-- Card Footer -->
                         <div class="px-4 py-3 bg-gray-50 border-t border-gray-100 flex justify-between">
                             <button @click="handleVerify(result.id)"
