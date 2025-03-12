@@ -135,7 +135,8 @@
                         <!-- Card Body -->
                         <div class="p-4">
                             <!-- Description -->
-                            <p v-if="result.description" class="text-gray-700 mb-4">{{ result.description }}</p>
+                            <p v-if="result.description" class="text-gray-700 mb-4"
+                                v-html="result.description.replace(/\n/g, '<br>')"></p>
                             <!-- Image Gallery -->
                             <div v-if="JSON.parse(result.images) && JSON.parse(result.images).length" class="mb-4">
                                 <div class="grid grid-cols-2 gap-2">
