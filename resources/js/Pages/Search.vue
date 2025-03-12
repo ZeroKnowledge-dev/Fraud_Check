@@ -152,11 +152,6 @@
                                 </div>
                             </div>
 
-                            <!-- Verify Count -->
-                            <div>
-                                <p class="text-sm text-gray-600">{{ result.verify_count }}</p>
-                            </div>
-
                             <!-- Details Cards -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 <div v-if="result.email" class="flex items-center p-3 bg-gray-50 rounded-lg">
@@ -193,9 +188,12 @@
                                     </svg>
                                     <span class="text-sm text-gray-700 truncate">{{ result.address }}</span>
                                 </div>
-
-                                <div>{{ result.verify_count }}</div>
                             </div>
+                        </div>
+
+                        <!-- Verify Count -->
+                        <div>
+                            <p class="text-sm text-gray-600">{{ result.verify_count }}</p>
                         </div>
 
                         <!-- Card Footer -->
